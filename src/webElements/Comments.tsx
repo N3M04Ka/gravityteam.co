@@ -1,6 +1,47 @@
 import img from "../assets/images/bitkub-logo-light-trimmed.png.png";
-import { GoArrowRight, GoArrowLeft} from "react-icons/go";
+import { GoArrowRight, GoArrowLeft } from "react-icons/go";
+import React from "react";
+interface Comment {
+    text: string;
+    author: string;
+    jopPosition: string;
+    companyLogo: string;
+    id: number;
+}
+const comments: Comment[] = [
+    {
+        text: "Since 2019, Gravity team has been an astounding market maker for Bitkub. They proven themselves to be one of the most consistent, committed and driven market makers on our exchange. Gravity Team has contributed high-quality volume and has proven to be very reliable and trustworthy partner. We strongly advocate Gravity Team as they have been an indispensable part of our market-making team.",
+        author: "Atthakrit Chimplapibul",
+        jopPosition: "Atthakrit Chimplapibul",
+        companyLogo: img,
+        id: 0,
+    },
+    {
+        text: "Since 2019, Gravity team has been an astounding market maker for Bitkub. They proven themselves to be one of the most consistent, committed and driven market makers on our exchange. Gravity Team has contributed high-quality volume and has proven to be very reliable and trustworthy partner. We strongly advocate Gravity Team as they have been an indispensable part of our market-making team.",
+        author: "Atthakrit Chimplapibul",
+        jopPosition: "Atthakrit Chimplapibul",
+        companyLogo: img,
+        id: 1,
+    },
+    {
+        text: "Since 2019, Gravity team has been an astounding market maker for Bitkub. They proven themselves to be one of the most consistent, committed and driven market makers on our exchange. Gravity Team has contributed high-quality volume and has proven to be very reliable and trustworthy partner. We strongly advocate Gravity Team as they have been an indispensable part of our market-making team.",
+        author: "Atthakrit Chimplapibul",
+        jopPosition: "Atthakrit Chimplapibul",
+        companyLogo: img,
+        id: 2,
+    },
+];
 export default function Comments() {
+    const [slideId, setSlideId] = React.useState(0);
+    function swipeBack() {
+        setSlideId((p) => (p - 1 + comments.length) % comments.length);
+    }
+    function swipeForth() {
+        setSlideId((p) => (p + 1) % comments.length);
+    }
+    function goToSlide(id: number) {
+        setSlideId(id);
+    }
     return (
         <section className="comments">
             <div className="container">
@@ -10,7 +51,7 @@ export default function Comments() {
                     and we’re happy to share some of their feedback below
                 </p>
                 <div className="controlButtons">
-                    <button>
+                    <button onClick={swipeBack}>
                         <svg width="0" height="0">
                             <linearGradient
                                 id="linearGradient"
@@ -29,7 +70,7 @@ export default function Comments() {
                             style={{ fill: "url(#linearGradient)" }}
                         />
                     </button>
-                    <button>
+                    <button onClick={swipeForth}>
                         <svg width="0" height="0">
                             <linearGradient
                                 id="linearGradient"
@@ -49,22 +90,27 @@ export default function Comments() {
                         />
                     </button>
                 </div>
-                <div className="comment">
-                    <p>
-                        Since 2019, Gravity team has been an astounding market
-                        maker for Bitkub. They have proven themselves to be one
-                        of the most consistent, committed and driven market
-                        makers on our exchange. Gravity Team has contributed
-                        high-quality volume and has proven to be very reliable
-                        and trustworthy partner. We strongly advocate Gravity
-                        Team as they have been an indispensable part of our
-                        market-making team.
-                    </p>
-                    <span>Atthakrit Chimplapibul</span>
-                    <div className="company">
-                        <span>Co-founder & CEO of Bitkub</span>
-                        <img src={img} alt="" />
+                <div className="commentsSlider">
+                    <div
+                        className="commentsHolder"
+                        style={{ transform: `translateX(-${slideId * 100}%)` }}
+                    >
+                        {comments.map((el, id) => (
+                            <div className="comment" key={id}>
+                                <p>{el.text}</p>
+                                <span>{el.author}</span>
+                                <div className="company">
+                                    <span>{el.jopPosition}</span>
+                                    <img src={el.companyLogo} alt="" />
+                                </div>
+                            </div>
+                        ))}
                     </div>
+                </div>
+                <div className="navButtons">
+                    {comments.map((_,id)=>(
+                        <button key={id} onClick={()=>goToSlide(id)} className={slideId==id?"active":""}></button>
+                    ))}
                 </div>
             </div>
         </section>

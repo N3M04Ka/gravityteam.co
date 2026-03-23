@@ -4,6 +4,9 @@ import img3 from '../assets/images/binance@2x.png.png'
 import img4 from '../assets/images/bitstamp@2x.png.png'
 import img5 from '../assets/images/coinbase@2x.png.png'
 import img6 from '../assets/images/bitfinex@2x.png.png'
+import img7 from '../assets/images/solana.png.png'
+import img8 from '../assets/images/near.png.png'
+import img9 from '../assets/images/mena.png.png'
 interface PartnerInfo{
     label:string,
     img:string,
@@ -40,6 +43,14 @@ export default function Partners() {
   return (
     <section className="partners">
         <div className="container">
+            <div className="imageContainer">
+                    <img src={img7} alt="" />
+                    <img src={img8} alt="" />
+                    <img src={img9} alt="" />
+                </div>
+            <div className="glowPurple">
+                <div className="glowPurple"></div>
+            </div>
             <div className="center">
                 <h2>Our Partners<br/>& Friends</h2>
                 <div className="right">

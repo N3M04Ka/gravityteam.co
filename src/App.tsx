@@ -6,6 +6,7 @@ import Partners from "./webElements/Partners";
 import Comments from "./webElements/Comments";
 import JoinUs from "./webElements/JoinUs";
 import ContactUs from "./webElements/ContactUs";
+import Footer from "./webElements/Footer";
 function App() {
     return <>
         <Header/>
@@ -18,6 +19,7 @@ function App() {
             <JoinUs/>
             <ContactUs/>
         </main>
+        <Footer/>
     </>;
 }
 

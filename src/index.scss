@@ -5,6 +5,7 @@
     color: white;
     // outline:1px solid white;
 }
+$gradient: linear-gradient(135deg, #665dcd 0%, #5fa4e6 45%, #d2ab67 100%);
 a {
     text-decoration: none;
     transition: color 0.3s ease;
@@ -33,12 +34,7 @@ button {
         padding-block: 1.7rem;
         font-size: 1.9rem;
         font-weight: 500;
-        background: linear-gradient(
-            135deg,
-            #665dcd 0%,
-            #5fa4e6 45%,
-            #d2ab67 100%
-        );
+        background:$gradient;
     }
 }
 h2.main {
@@ -77,6 +73,30 @@ p.main {
 }
 html {
     font-size: 62.5%;
+}
+.glowBlue,
+.glowYellow,
+.glowPurple {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+}
+.glowBlue {
+    width: 35rem;
+    aspect-ratio: 56/30;
+    background-color: rgba(95, 164, 230, 0.7);
+    filter: blur(4rem);
+    top: 0;
+    left: 0;
+}
+.glowYellow {
+    aspect-ratio: 341/329;
+    width: 13rem;
+    background-color: rgba(210, 171, 103, 0.6);
+    filter: blur(4rem);
+    top: -10%;
+    right: 15%;
 }
 header {
     .container {
@@ -128,12 +148,7 @@ header {
                 width: 1.6rem;
                 height: 1.6rem;
                 border-radius: 50%;
-                background: linear-gradient(
-                    135deg,
-                    #665dcd 0%,
-                    #5fa4e6 45%,
-                    #d2ab67 100%
-                );
+                background: $gradient;
             }
             span {
                 font-size: 1.5rem;
@@ -179,12 +194,7 @@ main {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 width: 105rem;
-                background: linear-gradient(
-                    135deg,
-                    #665dcd 0%,
-                    #5fa4e6 45%,
-                    #d2ab67 100%
-                );
+                background: $gradient;
                 gap: 2px;
                 margin-top: 6.4rem;
                 .gridEl {
@@ -197,12 +207,7 @@ main {
                     padding-block: 3rem;
                     background-color: #141619;
                     &:nth-child(2) {
-                        background: linear-gradient(
-                            135deg,
-                            #665dcd 0%,
-                            #5fa4e6 45%,
-                            #d2ab67 100%
-                        );
+                        background: $gradient;
                     }
                     span {
                         font-size: 3.5rem;
@@ -222,6 +227,25 @@ main {
     .container {
         @include flex-col-center();
         padding-top: 5rem;
+        position: relative;
+        .glowPurple {
+            width: 80rem;
+            filter: blur(8rem);
+            transform: rotate(-15deg);
+            left: 0;
+            bottom: 0;
+            aspect-ratio: 1;
+            background-color: rgba(102, 93, 205, 0.3);
+            .glowYellow {
+                aspect-ratio: 0.5;
+                width: 20rem;
+                background-color: rgba(210, 171, 103, 0.6);
+                filter: blur(4rem);
+                left: 0;
+                bottom: 0;
+                top: auto;
+            }
+        }
         .service {
             display: flex;
             gap: 11rem;
@@ -230,6 +254,7 @@ main {
             width: 105rem;
             justify-content: center;
             align-items: center;
+            position: relative;
             &:last-child {
                 flex-direction: row-reverse;
                 img {
@@ -271,12 +296,7 @@ main {
                             content: "";
                             width: 100%;
                             height: 2px;
-                            background: linear-gradient(
-                                135deg,
-                                #665dcd 0%,
-                                #5fa4e6 45%,
-                                #d2ab67 100%
-                            );
+                            background: $gradient;
                         }
                     }
                     .arrow {
@@ -290,8 +310,52 @@ main {
 }
 .partners {
     .container {
-        padding-block: 8rem;
+        position: relative;
+        padding-block: 12rem;
         @include flex-center();
+        .imageContainer {
+            position: absolute;
+            width: 20rem;
+            aspect-ratio: 1;
+            left: 10%;
+            top: 10%;
+            z-index: 3;
+            img {
+                position: absolute;
+                &:nth-child(1) {
+                    height: 9.6rem;
+                    left: 0;
+                    bottom: 0;
+                }
+                &:nth-child(2) {
+                    height: 8.3rem;
+                    left: 30%;
+                    top: 0;
+                }
+                &:nth-child(3) {
+                    height: 8.2rem;
+                    right: 0;
+                    bottom: 20%;
+                }
+            }
+        }
+        > .glowPurple {
+            width: 45rem;
+            filter: blur(6rem);
+            transform: rotate(12deg);
+            left: 0;
+            top: 0;
+            aspect-ratio: 1;
+            background-color: rgba(102, 93, 205, 0.3);
+            transform: rotate(5deg);
+            > .glowPurple {
+                width: 30rem;
+                transform: rotate(12deg);
+                left: 0;
+                aspect-ratio: 1;
+                background-color: rgba(102, 93, 205, 1);
+            }
+        }
         .center {
             display: flex;
             justify-content: space-between;
@@ -302,6 +366,7 @@ main {
             h2 {
                 font-size: 6rem;
                 font-weight: 500;
+                position: relative;
             }
             .right {
                 display: flex;
@@ -367,6 +432,8 @@ main {
 .comments {
     .container {
         @include flex-col-center();
+        overflow: hidden;
+        margin-block: 10rem;
         > * {
             max-width: fit-content;
         }
@@ -378,7 +445,7 @@ main {
             font-size: 2rem;
             max-width: min(60rem, 90%);
             text-align: center;
-            margin-block: 1rem;
+            margin-block: 2rem;
         }
         .controlButtons {
             display: flex;
@@ -386,7 +453,8 @@ main {
             margin-block: 2rem;
             button {
                 border: 2px solid transparent;
-                padding: 1rem;
+                padding-inline: 1.2rem;
+                padding-block: 1.1rem;
                 border-radius: 50%;
                 .arrow {
                     font-size: 3rem;
@@ -406,55 +474,82 @@ main {
                 &:last-child {
                     background:
                         linear-gradient(#141619, #141619),
-                        linear-gradient(
-                            135deg,
-                            #665dcd 0%,
-                            #5fa4e6 45%,
-                            #d2ab67 100%
-                        );
+                        $gradient;
 
                     background-clip: padding-box, border-box;
                     background-origin: border-box;
                 }
             }
         }
-        .comment {
-            @include flex-col-center();
-            gap: 3rem;
-            p {
-                max-width: min(68rem, 90%);
-                font-size: 2.4rem;
-                text-align: center;
-                font-weight: 300;
-            }
-            > span {
-                font-size: 1.8rem;
-                font-weight: 600;
-            }
-            .company {
-                position: relative;
-                display: flex;
-                align-items: center;
+        .commentsSlider {
+            width: 65rem;
+            overflow: hidden;
+        }
+        .commentsHolder {
+            display: flex;
+            transition: transform 0.3s ease-out;
+            .comment {
+                @include flex-col-center();
                 gap: 3rem;
-                span {
-                    font-size: 1.4rem;
-                    font-weight: 200;
+                width: 100%;
+                flex-shrink: 0;
+                p {
+                    max-width: min(60rem, 90%);
+                    font-size: 2.4rem;
+                    text-align: center;
+                    font-weight: 300;
+                    line-height: 1.5;
+                }
+                > span {
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                }
+                .company {
                     position: relative;
-                    height: 100%;
-                    padding-block: 1rem;
-                    padding-right: 3rem;
-                    &::after {
-                        content: "";
+                    display: flex;
+                    align-items: center;
+                    gap: 3rem;
+                    span {
+                        font-size: 1.4rem;
+                        font-weight: 200;
+                        position: relative;
                         height: 100%;
-                        position: absolute;
-                        width: 1px;
-                        background-color: #666666;
-                        right: 0;
-                        top: 0;
+                        padding-block: 1rem;
+                        padding-right: 3rem;
+                        &::after {
+                            content: "";
+                            height: 100%;
+                            position: absolute;
+                            width: 1px;
+                            background-color: #666666;
+                            right: 0;
+                            top: 0;
+                        }
+                    }
+                    img {
+                        height: 2.6rem;
                     }
                 }
-                img {
-                    height: 2.6rem;
+            }
+        }
+        .navButtons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-block: 2rem;
+            button {
+                width: 1.5rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background-color: #5a5a5a;
+                &:hover {
+                    transform: scale(1.2);
+                }
+                &:active {
+                    transform: scale(1.5);
+                }
+                &.active {
+                    background: $gradient;
                 }
             }
         }
@@ -467,11 +562,15 @@ main {
         justify-content: center;
         margin-block: 7rem;
         .left {
+            position: relative;
             h2 {
                 font-size: 5.3rem;
                 width: 42rem;
                 font-weight: 500;
+                padding-left: 3rem;
+                position: relative;
                 &:last-child {
+                    padding-left: 4rem;
                 }
             }
         }
@@ -492,21 +591,16 @@ main {
                 span {
                     font-size: 1.8rem;
                     position: relative;
-                    padding-bottom:0.5rem;
-                    padding-right:1rem;
+                    padding-bottom: 0.5rem;
+                    padding-right: 1rem;
                     &::after {
                         content: "";
                         width: 100%;
                         height: 2px;
                         position: absolute;
-                        left:0;
-                        bottom:0;
-                        background: linear-gradient(
-                            135deg,
-                            #665dcd 0%,
-                            #5fa4e6 45%,
-                            #d2ab67 100%
-                        );
+                        left: 0;
+                        bottom: 0;
+                        background: $gradient;
                     }
                 }
                 .arrow {
@@ -516,17 +610,100 @@ main {
         }
     }
 }
-.contactUs{
-    .container{
+.contactUs {
+    .container {
         @include flex-col-center();
-        padding-block:8rem;
-        p{
+        margin-block: 12rem;
+        position: relative;
+        .glowBlue {
+            top: auto;
+            bottom: 0;
+            left: 5%;
+        }
+        .glowYellow {
+            left: 52%;
+            top: 15%;
+        }
+        .glowPurple {
+            width: 40rem;
+            filter: blur(4rem);
+            transform: rotate(12deg);
+            left: 60%;
+            aspect-ratio: 662/500;
+            background-color: rgba(102, 93, 205, 0.3);
+            .glowYellow {
+                bottom: 20%;
+                right: 0;
+                left: auto;
+                top: auto;
+                background-color: rgba(210, 171, 103, 0.9);
+                z-index: 3;
+            }
+        }
+        h2 {
+            position: relative;
+        }
+        p {
             font-size: 1.8rem;
             font-weight: 300;
-            color:#e5e5e5;
+            color: #e5e5e5;
+            position: relative;
         }
-        button{
+        button {
             margin-top: 4rem;
+        }
+    }
+}
+footer {
+    .container {
+        padding-block: 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+        border-top: 2px solid #ffffff28;
+        > * {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top {
+            .left {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                span {
+                    font-size: 1.5rem;
+                }
+                .links {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    a {
+                        font-size: 1.4rem;
+                        color: #bcbcbc;
+                        &:hover {
+                            color: #5a5a5a;
+                        }
+                    }
+                }
+            }
+            img {
+                height: 4rem;
+                align-self: flex-start;
+            }
+        }
+        .bottom {
+            a {
+                color: #bcbcbc;
+                font-size: 1.4rem;
+                &:hover {
+                    color: #5a5a5a;
+                }
+            }
+            span {
+                color: #bcbcbc;
+                font-size: 1.4rem;
+            }
         }
     }
 }

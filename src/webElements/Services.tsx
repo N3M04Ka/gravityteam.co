@@ -5,6 +5,7 @@ export default function Services() {
     return (
         <section className="services">
             <div className="container">
+                <div className="glowPurple"><div className="glowYellow"></div></div>
                 <h2 className="main">Crypto Markey Making</h2>
                 <p className="main">
                     We are a global crypto liquidity provider and algorithmic
