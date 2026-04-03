@@ -6,7 +6,7 @@ export default function Services() {
         <section className="services">
             <div className="container">
                 <div className="glowPurple"><div className="glowYellow"></div></div>
-                <h2 className="main">Crypto Markey Making</h2>
+                <h2 className="main">Crypto Market Making</h2>
                 <p className="main">
                     We are a global crypto liquidity provider and algorithmic
                     market maker. We trade digital assets listed on Centralized
